@@ -83,5 +83,4 @@ const animalCreater = (species, diet, habitat) =>{
 
 let animalOne = animalCreater(newSpecies(earthSpecies), whatDoIEat(typeOfDiets), whereDoILive(habitat));
 
-console.log(animalOne);
-console.log(animalOne.whatAmI());
+console.log(`You have created a new species of animal called: ${animalOne.species}. This new species has a ${animalOne.diet} diet and can be found in a(n) ${animalOne.habitat} habitat. This new species is know to be a ${animalOne.whatAmI()}!`);
