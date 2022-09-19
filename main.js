@@ -5,47 +5,31 @@ const typeOfDiets = ['carnivore', 'herbivore', 'omnivore'];
 //array to store habitats
 const habitat = ['wetlands', 'tundra', 'savanna', 'tropical rainforest', 'desert', 'artic', 'grassland', 'mountains', 'coast'];
 
-//Define variable to store a random number
-let randOne = 0;
-let randTwo = 0;
-//We are going to randomly choose two random animals from the earth species array
-const animals = species => {
-    //Produce a random number to select the first animal
-    randOne = Math.floor(Math.random() * (species.length - 1));
-    
-    //Produce a random number to select the second animal
-    randTwo = Math.floor(Math.random() * (species.length - 1));
-
-    //This loop will run if the two random numbers are the same and will continue to run if they remain the same. This will prevent from having two of he same animals
-    while(randOne === randTwo){
-        randTwo = Math.floor(Math.random() * (species.length - 1));
-    }
-};
-
 //randomly choose the new animals diet
 const whatDoIEat = diet =>{
-    let randnum = Math.floor(Math.random() * 2);
+    let randnum = Math.floor(Math.random() * 3);
     return diet[randnum];
 };
 
 //randomly chooses the new animals habitat
 const whereDoILive = animalHabitat =>{
-    let randnum = Math.floor(Math.random() * 8);
+    let randnum = Math.floor(Math.random() * 9);
     return animalHabitat[randnum];
 };
 
-//this will choose if the anmial is a prey or predator. This function will depend on the animals diet type
-const whatAmI = (diet) =>{
-    if(diet === 'carnivore'){
-        return 'predator'
-    }else if(diet === 'herbivor'){
-        return 'prey'
-    }else{
-        return 'predator and prey'
-    }
-}
+const newSpecies = (species) =>{
+    //Produce a random number to select the first animal
+    let num1 = Math.floor(Math.random() * (species.length - 1));
+    
+    //Produce a random number to select the second animal
+    let num2 = Math.floor(Math.random() * (species.length - 1));
 
-const newSpecies = (num1, num2,species) =>{
+    //This loop will run if the two random numbers are the same and will continue to run if they remain the same. This will prevent from having two of he same animals
+    while(num1 === num2){
+        num2 = Math.floor(Math.random() * (species.length - 1));
+    }
+
+    //These variables are to keep track of taking a piece of the species name. 
     let half1 = 0;
     let half2 = 0;
     
@@ -80,6 +64,24 @@ const newSpecies = (num1, num2,species) =>{
     
 }
 
-animals(earthSpecies);
+const animalCreater = (species, diet, habitat) =>{
+    return{
+        species:species,
+        diet:diet,
+        habitat:habitat,
+        whatAmI (){
+            if(this.diet === 'carnivore'){
+                return 'predator'
+            }else if(this.diet === 'herbivore'){
+                return 'prey'
+            }else{
+                return 'predator and prey'
+            }
+        }
+    }
+};
 
-console.log(newSpecies(randOne, randTwo, earthSpecies));
+let animalOne = animalCreater(newSpecies(earthSpecies), whatDoIEat(typeOfDiets), whereDoILive(habitat));
+
+console.log(animalOne);
+console.log(animalOne.whatAmI());
