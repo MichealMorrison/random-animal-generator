@@ -1,4 +1,4 @@
-# random-message-generator
+# random-animal-generator
 ## Description
 This program takes an array of land animals that are found on the earth, it randomly selects two different earth animals
 and combines parts of their name to create a new species of animals. It will also select what type of diet this animal eats, along
